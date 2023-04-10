@@ -120,7 +120,7 @@ struct Command: ParsableCommand {
                 .flatMap { pair -> [Foundation.URL] in
                     let zip = try zipper.zip(target: pair.0, version: self.options.zipVersion, file: pair.1)
                     let checksum = try zipper.checksum(file: zip)
-                    try zipper.clean(file: pair.1)
+                    //try zipper.clean(file: pair.1)
 
                     return [ zip, checksum ]
                 }
