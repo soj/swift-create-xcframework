@@ -24,7 +24,7 @@ async function run() {
         await installUsingMintIfRequired('swift-create-xcframework', 'unsignedapps/swift-create-xcframework')
 
         // put together our options
-        var options = ['--zip', '--github-action']
+        var options = []
         if (!!packagePath) {
             options.push('--package-path')
             options.push(packagePath)
@@ -62,16 +62,16 @@ async function run() {
 
         await runUsingMint('swift-create-xcframework', options)
 
-        let client = artifact.create()
-        let files = fs.readFileSync(outputPath, { encoding: 'utf8' })
-            .split('\n')
-            .map((file) => file.trim())
+        //let client = artifact.create()
+        // let files = fs.readFileSync(outputPath, { encoding: 'utf8' })
+        //     .split('\n')
+        //     .map((file) => file.trim())
 
-        for (var i = 0, c = files.length; i < c; i++) {
-            let file = files[i]
-            let name = path.basename(file)
-            await client.uploadArtifact(name, [file], path.dirname(file))
-        }
+        // for (var i = 0, c = files.length; i < c; i++) {
+        //     let file = files[i]
+        //     let name = path.basename(file)
+        //     await client.uploadArtifact(name, [file], path.dirname(file))
+        // }
 
     } catch (error) {
         core.setFailed(error)
